@@ -27,7 +27,9 @@ namespace FakeXrmSetToNull
             foreach (var bonus in bonuses)
             {
                 bonus.statecode = null;
+               
                 //bonus.Attributes.Remove(cgk_bonus.AttributeLogicalNames.statecode);
+                //if I use this line the test will pass, but both seem to work in an actual CRM
             }
             var executeMultipleResponses = _xrmContext.ExecuteMultipleRequests(bonuses.Select(x => new CreateRequest { Target = x }).Cast<OrganizationRequest>().ToList());
         }
